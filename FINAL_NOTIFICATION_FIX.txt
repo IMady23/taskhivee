@@ -1,0 +1,64 @@
+MANUAL FIX REQUIRED - Apply this to client/src/context/TasksContext.jsx
+
+FIND (lines 163-180):
+```javascript
+          // Status update - notify current assignee
+          const assigneeId = prev.assignedToUserId || prev.assignedTo;
+          if (assigneeId && assigneeId !== 'Unassigned' && assigneeId !== user.uid) {
+            let msg = '';
+            if (safeUpdates.status && safeUpdates.status !== prev.status) {
+              msg = `Task "${prev.title}" status updated to ${safeUpdates.status}`;
+            }
+
+            if (msg) {
+              await sendNotification(
+                assigneeId,
+                teamId,
+                'task_attention', // Yellow
+                'Task Status Updated',
+                `Task '${prev.title}' moved to ${safeUpdates.status}`
+              );
+            }
+          }
+```
+
+REPLACE WITH:
+```javascript
+          // Status update - notify current assignee
+          const assigneeId = prev.assignedToUserId || prev.assignedTo;
+          if (assigneeId && assigneeId !== 'Unassigned' && assigneeId !== user.uid) {
+            let title = '';
+            let msg = '';
+            let notifType = 'task_attention';
+            
+            if (safeUpdates.status && safeUpdates.status !== prev.status) {
+              // Special handling for approval/rejection
+              if (safeUpdates.reviewDecision === 'approved' && safeUpdates.status === 'Done') {
+                title = '✅ Task Completed';
+                msg = `Your task "${prev.title}" has been approved and marked as completed!`;
+                notifType = 'task_success';
+              } else if (safeUpdates.reviewDecision === 'rejected') {
+                title = '⚠️ Rejected - Do Again';
+                msg = `Your work on "${prev.title}" was rejected. Please review the feedback and submit again.`;
+                notifType = 'task_attention';
+              } else {
+                title = 'Task Status Updated';
+                msg = `Task "${prev.title}" status updated to ${safeUpdates.status}`;
+              }
+            }
+
+            if (msg) {
+              await sendNotification(
+                assigneeId,
+                teamId,
+                notifType,
+                title,
+                msg
+              );
+            }
+          }
+```
+
+This will give members the exact notifications you requested:
+- "✅ Task Completed" when leader approves
+- "⚠️ Rejected - Do Again" when leader rejects

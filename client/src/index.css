@@ -1,0 +1,443 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🎨 Elite Professional Design System - HSL Color Tokens */
+@layer base {
+  :root {
+    /* Base Colors - Light Mode (Default) */
+    --background: 220 40% 98%;    /* #F8F9FC - warm off-white */
+    --foreground: 220 39% 11%;    /* #1A1F2E - soft black */
+    
+    --card: 0 0% 100%;            /* #FFFFFF - crisp white */
+    --card-foreground: 220 39% 11%;
+    
+    --primary: 217 91% 55%;       /* #2563EB - deeper cyan-blue */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 220 14% 96%;     /* #F3F4F6 - warm gray */
+    --secondary-foreground: 220 39% 11%;
+    
+    --muted: 220 14% 96%;         /* #F3F4F6 */
+    --muted-foreground: 220 9% 46%; /* #5A6275 - warm gray text */
+    
+    --accent: 217 91% 55%;        /* same as primary */
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 55%;     /* #DC2626 - deeper red */
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 220 13% 91%;        /* #E2E6F0 - light gray */
+    --input: 220 13% 91%;
+    --ring: 217 91% 55%;
+    
+    --success: 160 84% 35%;       /* #059669 - deeper green */
+    --warning: 38 92% 45%;        /* #D97706 - deeper amber */
+    
+    --radius: 1rem;               /* 16px - rounded but not too round */
+    
+    /* Spacing Scale */
+    --spacing-xs: 0.25rem;   /* 4px */
+    --spacing-sm: 0.5rem;    /* 8px */
+    --spacing-md: 1rem;      /* 16px */
+    --spacing-lg: 1.5rem;    /* 24px */
+    --spacing-xl: 2rem;      /* 32px */
+    --spacing-2xl: 3rem;     /* 48px */
+    --spacing-3xl: 4rem;     /* 64px */
+    
+    /* Legacy spacing (for backward compatibility) */
+    --space-1: var(--spacing-xs);
+    --space-2: var(--spacing-sm);
+    --space-3: 0.75rem;
+    --space-4: var(--spacing-md);
+    --space-6: var(--spacing-lg);
+    --space-8: var(--spacing-xl);
+    --space-12: var(--spacing-2xl);
+    
+    /* Typography Scale */
+    --font-size-xs: 0.75rem;    /* 12px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-base: 1rem;     /* 16px */
+    --font-size-lg: 1.125rem;   /* 18px */
+    --font-size-xl: 1.25rem;    /* 20px */
+    --font-size-2xl: 1.5rem;    /* 24px */
+    --font-size-3xl: 1.875rem;  /* 30px */
+    --font-size-4xl: 2.25rem;   /* 36px */
+    
+    /* Font Weights */
+    --font-weight-normal: 450;   /* Modern thin look for body */
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600; /* Headings */
+    
+    /* Line Heights */
+    --line-height-tight: 1.2;    /* Headings */
+    --line-height-normal: 1.6;   /* Body text */
+    --line-height-relaxed: 1.8;  /* Loose text */
+    
+    /* Letter Spacing */
+    --letter-spacing-tight: -0.02em; /* Headings */
+    --letter-spacing-normal: 0;
+    --letter-spacing-wide: 0.025em;
+    
+    /* Shadows - Light Mode (softer, more subtle) */
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s ease;
+  }
+  
+  /* 🌙 Dark Mode - Deep, Professional, Easy on Eyes */
+  .dark {
+    /* Background - Deep navy */
+    --background: 222 47% 11%;    /* #0B0F14 - deep navy */
+    --foreground: 0 0% 98%;       /* #FAFAFA - off-white */
+    
+    /* Cards - Dark card background */
+    --card: 220 39% 11%;          /* #0F1219 - dark card */
+    --card-foreground: 0 0% 98%;
+    
+    /* Primary - Vibrant blue for dark backgrounds */
+    --primary: 217 91% 60%;       /* #3B82F6 - vibrant cyan-blue */
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary - Subtle elements */
+    --secondary: 220 17% 20%;     /* #2D3748 */
+    --secondary-foreground: 0 0% 98%;
+    
+    /* Muted - Dark backgrounds */
+    --muted: 220 17% 20%;         /* #2D3748 */
+    --muted-foreground: 220 9% 46%; /* #6B7280 */
+    
+    /* Accent - Same as primary */
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Destructive - Brighter red for dark mode */
+    --destructive: 0 84% 60%;     /* #EF4444 */
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Borders - Subtle borders */
+    --border: 220 13% 18%;        /* #232835 */
+    --input: 220 13% 18%;
+    --ring: 217 91% 60%;
+    
+    /* Status colors - Brighter for dark mode */
+    --success: 160 84% 39%;       /* #10B981 - emerald */
+    --warning: 38 92% 50%;        /* #F59E0B - amber */
+    
+    /* Shadows - Dark Mode */
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Base Styles */
+@layer base {
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-weight: var(--font-weight-normal);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Subtle gradient for light mode - adds depth without distraction */
+  body {
+    background: linear-gradient(145deg, #F8FAFE 0%, #F0F4FA 100%);
+  }
+  
+  /* Dark mode - solid background */
+  .dark body {
+    background: hsl(var(--background));
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+  }
+  
+  h1 { font-size: var(--font-size-4xl); }
+  h2 { font-size: var(--font-size-3xl); }
+  h3 { font-size: var(--font-size-2xl); }
+  h4 { font-size: var(--font-size-xl); }
+  h5 { font-size: var(--font-size-lg); }
+  h6 { font-size: var(--font-size-base); }
+}
+
+/* Typography Utility Classes */
+@layer components {
+  .text-caption {
+    font-size: var(--font-size-sm);
+    color: hsl(var(--muted-foreground));
+    font-weight: 400;
+  }
+  
+  .text-tiny {
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    font-weight: var(--font-weight-semibold);
+    color: hsl(var(--muted-foreground));
+  }
+}
+
+/* Animated gradient background */
+.gradient-bg {
+  background: linear-gradient(115deg, #0f1724 0%, #071029 20%, #0b1220 40%, #150a2e 60%, #081329 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(60deg, rgba(0, 122, 204, 0.18), rgba(139, 92, 246, 0.18), rgba(0, 204, 188, 0.12));
+  filter: blur(40px);
+  transform: translateX(-30%);
+  animation: moveGradient 10s linear infinite;
+  z-index: 0;
+}
+
+@keyframes moveGradient {
+  0% {
+    transform: translateX(-30%) translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateX(30%) translateY(-5%) scale(1.02);
+  }
+
+  100% {
+    transform: translateX(-30%) translateY(0) scale(1);
+  }
+}
+
+/* Skeleton Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Center container */
+.app-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Card / login panel */
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px var(--shadow-color);
+  border-radius: 12px;
+  padding: 1.75rem;
+  color: var(--text-primary);
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/* Neon input focus */
+.input {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+  /* Indigo-ish */
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+/* subtle label */
+.label-small {
+  font-size: 0.8rem;
+  color: #9aa4b2;
+}
+
+/* action button */
+.btn-primary {
+  background: linear-gradient(90deg, #007acc, #6b8cff);
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* link style */
+.link-muted {
+  color: #9aa4b2;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* responsive tweaks */
+@media (max-width: 520px) {
+  .auth-card {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+}
+
+/* Tailwind helper (kept with @apply usage) */
+.sidebar-btn {
+  @apply flex items-center space-x-2 px-4 py-2 w-full rounded-md hover:bg-[#2d2d2d] transition;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Scrollbar Styling - Elite Polish */
+.custom-scrollbar {
+  scroll-behavior: smooth;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.5);
+}
+
+/* Firefox scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.3) rgba(255, 255, 255, 0.05);
+}
+
+/* Card Enhancements - Elite Polish */
+.card-clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.card-clickable:hover {
+  transform: scale(1.02);
+  border-color: hsl(var(--primary) / 0.3);
+}
+
+/* Typography Utilities - Elite Polish */
+.label-tiny {
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .custom-scrollbar {
+    scroll-behavior: auto;
+  }
+  
+  .card-clickable:hover {
+    transform: none;
+  }
+}
+
+/* Bar Chart Hover Effects - Elite Polish */
+.recharts-bar-rectangle {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  transform-origin: center bottom;
+}
+
+.recharts-bar-rectangle:hover {
+  transform: scaleY(1.05);
+  opacity: 0.9;
+}
+
+/* Card Design Polish - Elite Professional */
+.card {
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+/* Light mode cards - use shadows instead of borders */
+.light .card {
+  border: none;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.03),
+    0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.card-clickable:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.light .card-clickable:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+/* Card Padding Consistency */
+.card-content {
+  padding: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .card-content {
+    padding: 1rem;
+  }
+}
+
+/* Sidebar Width Refinement - Elite Polish */
+.sidebar {
+  width: 256px;
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 240px;
+  }
+}

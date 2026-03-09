@@ -1,0 +1,20 @@
+[
+  {
+    "id": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "uid": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "name": "madhav",
+    "email": "madhavvadkapuram2@gmail.com",
+    "role": "leader",
+    "isEmailVerified": true,
+    "isActive": true,
+    "createdAt": {
+      "_seconds": 1770191769,
+      "_nanoseconds": 821000000
+    },
+    "teamId": "TiPJqmhS75d6qbmPtJfS",
+    "updatedAt": {
+      "_seconds": 1770537772,
+      "_nanoseconds": 395000000
+    }
+  }
+]

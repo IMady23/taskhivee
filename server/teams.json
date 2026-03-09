@@ -1,0 +1,898 @@
+[
+  {
+    "id": "0xEPmVq9Hlk3oH71CFEh",
+    "name": "chiruu",
+    "teamId": "GSY02I",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "Madhavchari",
+        "email": "theatredreamers@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 10,
+    "createdAt": {
+      "_seconds": 1770474765,
+      "_nanoseconds": 533000000
+    },
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770474774,
+      "_nanoseconds": 325000000
+    }
+  },
+  {
+    "id": "2ouxM2yTFKcWqzpsPWFg",
+    "name": "hi",
+    "teamId": "R7BGOT",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "maxSize": 5,
+    "createdAt": {
+      "_seconds": 1770478415,
+      "_nanoseconds": 849000000
+    },
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+      "cbdIr7wRL4WR03Nkv9eSxkbu4SD2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "chiru",
+        "email": "thebosschiru@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "activity": [
+      {
+        "id": "1770478567968dl0ea",
+        "text": "Bug 'login page' reported by Vishnu",
+        "date": {
+          "_seconds": 1770478567,
+          "_nanoseconds": 968000000
+        }
+      },
+      {
+        "id": "1770478747137wqfh2",
+        "text": "Bug 'home page crashing' reported by Vishnu",
+        "date": {
+          "_seconds": 1770478747,
+          "_nanoseconds": 137000000
+        }
+      },
+      {
+        "id": "1770484064748n83c2",
+        "text": "Bug 'dashboard page' reported by Vishnu",
+        "date": {
+          "_seconds": 1770484064,
+          "_nanoseconds": 748000000
+        }
+      },
+      {
+        "id": "1770485225687oc69e",
+        "text": "Bug 'gug' reported by Vishnu",
+        "date": {
+          "_seconds": 1770485225,
+          "_nanoseconds": 687000000
+        }
+      },
+      {
+        "id": "17704871490080kt3x",
+        "text": "Bug 'jhgjh' reported by Vishnu",
+        "date": {
+          "_seconds": 1770487149,
+          "_nanoseconds": 8000000
+        }
+      },
+      {
+        "id": "1770487567303k2y6t",
+        "text": "Bug 'bb' reported by Vishnu",
+        "date": {
+          "_seconds": 1770487567,
+          "_nanoseconds": 303000000
+        }
+      },
+      {
+        "id": "1770488861437iwiiq",
+        "text": "Bug 'hjh' reported by Vishnu",
+        "date": {
+          "_seconds": 1770488861,
+          "_nanoseconds": 437000000
+        }
+      },
+      {
+        "id": "177048892136226qe1",
+        "text": "Bug 'page crashing' reported by Vishnu",
+        "date": {
+          "_seconds": 1770488921,
+          "_nanoseconds": 362000000
+        }
+      },
+      {
+        "id": "1770490692592kivrk",
+        "text": "Bug 'hi' reported by Vishnu",
+        "date": {
+          "_seconds": 1770490692,
+          "_nanoseconds": 592000000
+        }
+      },
+      {
+        "id": "17704926009752cdmx",
+        "text": "Bug 'hihi' reported by Vishnu",
+        "date": {
+          "_seconds": 1770492600,
+          "_nanoseconds": 975000000
+        }
+      },
+      {
+        "id": "1770496766053l4l3t",
+        "text": "Bug 'notifiactions' reported by Vishnu",
+        "date": {
+          "_seconds": 1770496766,
+          "_nanoseconds": 53000000
+        }
+      },
+      {
+        "id": "1770497100823msswm",
+        "text": "Bug 'last time' reported by Vishnu",
+        "date": {
+          "_seconds": 1770497100,
+          "_nanoseconds": 823000000
+        }
+      },
+      {
+        "id": "17704992694135z5sn",
+        "text": "Bug 'last time' reported by Vishnu",
+        "date": {
+          "_seconds": 1770499269,
+          "_nanoseconds": 413000000
+        }
+      }
+    ],
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770500736,
+      "_nanoseconds": 87000000
+    }
+  },
+  {
+    "id": "7HtAUytmDw6Q4blvQ5wQ",
+    "name": "soul",
+    "teamId": "OQOKAI",
+    "leaderId": "gh5OMfgdt5bnnQEKWO31a4sU7Xk1",
+    "members": [
+      "gh5OMfgdt5bnnQEKWO31a4sU7Xk1"
+    ],
+    "isActive": true,
+    "createdAt": {
+      "_seconds": 1770185907,
+      "_nanoseconds": 554000000
+    },
+    "invitedMembers": [
+      {
+        "name": "madhavchari",
+        "email": "personal245923@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 10,
+    "updatedAt": {
+      "_seconds": 1770500120,
+      "_nanoseconds": 834000000
+    }
+  },
+  {
+    "id": "97JLHdQMYlgEQ2CX29be",
+    "name": "hello",
+    "teamId": "B7FSSP",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "madhavchari",
+        "email": "personal245923@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 5,
+    "createdAt": {
+      "_seconds": 1770500752,
+      "_nanoseconds": 996000000
+    },
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770501220,
+      "_nanoseconds": 376000000
+    }
+  },
+  {
+    "id": "Auto_ID",
+    "teamId": "team_001",
+    "teamName": "TaskHive Team",
+    "leaderId": "test_uid_001",
+    "createdAt": {
+      "_seconds": 1769961998,
+      "_nanoseconds": 650000000
+    }
+  },
+  {
+    "id": "BxWU6jgOlfNNcCkbfKS7",
+    "name": "huh",
+    "teamId": "65FZMU",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "maxSize": 10,
+    "createdAt": {
+      "_seconds": 1770534641,
+      "_nanoseconds": 360000000
+    },
+    "invitedMembers": [],
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770536564,
+      "_nanoseconds": 39000000
+    }
+  },
+  {
+    "id": "FR5fYXkEL271B7nae98J",
+    "name": "hh",
+    "teamId": "9NAJC0",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "mady",
+        "email": "personal245923@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 10,
+    "createdAt": {
+      "_seconds": 1770503670,
+      "_nanoseconds": 902000000
+    },
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770503756,
+      "_nanoseconds": 311000000
+    }
+  },
+  {
+    "id": "GIClkCgUCNNnc4qz9Dk5",
+    "name": "Taskhive",
+    "teamId": "M1WGAN",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "Sathvik",
+        "email": "ysk20052024@gmail.com",
+        "status": "invited"
+      },
+      {
+        "name": "Manaswini",
+        "email": "manumanaswini7598@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 5,
+    "createdAt": {
+      "_seconds": 1770472578,
+      "_nanoseconds": 653000000
+    },
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770474158,
+      "_nanoseconds": 352000000
+    }
+  },
+  {
+    "id": "LfvXipynLP1IzYzPZoza",
+    "name": "soul",
+    "teamId": "GUQ5B7",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "maxSize": 10,
+    "createdAt": {
+      "_seconds": 1770265383,
+      "_nanoseconds": 454000000
+    },
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+      "UVZyWgoSIigVhPMifBHCjrZcEEo1",
+      "VTseVCLOJVRs1V2icaVPkMPWKmF3"
+    ],
+    "invitedMembers": [
+      {
+        "name": "tarun",
+        "email": "tarun@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "activity": [
+      {
+        "id": "17702895566513c4rt",
+        "text": "Bug 'dashboard page' reported by Manaswini",
+        "date": {
+          "_seconds": 1770289556,
+          "_nanoseconds": 651000000
+        }
+      },
+      {
+        "id": "177028957814363jqv",
+        "text": "Bug 'dashboard page' reported by Manaswini",
+        "date": {
+          "_seconds": 1770289578,
+          "_nanoseconds": 143000000
+        }
+      },
+      {
+        "id": "1770289863101277xq",
+        "text": "Bug 'ggg' reported by Manaswini",
+        "date": {
+          "_seconds": 1770289863,
+          "_nanoseconds": 101000000
+        }
+      },
+      {
+        "id": "1770290188097frnqp",
+        "text": "Bug 'hi' reported by Manaswini",
+        "date": {
+          "_seconds": 1770290188,
+          "_nanoseconds": 97000000
+        }
+      },
+      {
+        "id": "17702904226510ijye",
+        "text": "Bug 'hf' reported by Manaswini",
+        "date": {
+          "_seconds": 1770290422,
+          "_nanoseconds": 651000000
+        }
+      },
+      {
+        "id": "1770291093433gynvc",
+        "text": "Bug 'login page' reported by Manaswini",
+        "date": {
+          "_seconds": 1770291093,
+          "_nanoseconds": 433000000
+        }
+      },
+      {
+        "id": "1770291623196bd1do",
+        "text": "Bug 'sign in page' reported by Manaswini",
+        "date": {
+          "_seconds": 1770291623,
+          "_nanoseconds": 196000000
+        }
+      },
+      {
+        "id": "17702919275044imy7",
+        "text": "Bug 'gjkh' reported by Manaswini",
+        "date": {
+          "_seconds": 1770291927,
+          "_nanoseconds": 504000000
+        }
+      },
+      {
+        "id": "1770293398230v4ko3",
+        "text": "Bug 'fgf' reported by Manaswini",
+        "date": {
+          "_seconds": 1770293398,
+          "_nanoseconds": 230000000
+        }
+      },
+      {
+        "id": "1770312262132k2x2a",
+        "text": "Bug 'mnbmbv' reported by manaswini",
+        "date": {
+          "_seconds": 1770312262,
+          "_nanoseconds": 132000000
+        }
+      },
+      {
+        "id": "17703143035998z6ri",
+        "text": "Bug 'hhh' reported by manaswini",
+        "date": {
+          "_seconds": 1770314303,
+          "_nanoseconds": 599000000
+        }
+      },
+      {
+        "id": "1770401061981hb2xs",
+        "text": "Bug 'HELLO' reported by manaswini",
+        "date": {
+          "_seconds": 1770401061,
+          "_nanoseconds": 981000000
+        }
+      }
+    ],
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770468944,
+      "_nanoseconds": 132000000
+    }
+  },
+  {
+    "id": "OB7ykMcFzmdLPhIMaYVo",
+    "name": "Beta squad",
+    "teamId": "42IUKY",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "Madhav",
+        "email": "madhavvadkapuram@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 5,
+    "createdAt": {
+      "_seconds": 1770468975,
+      "_nanoseconds": 356000000
+    },
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770471054,
+      "_nanoseconds": 206000000
+    }
+  },
+  {
+    "id": "TiPJqmhS75d6qbmPtJfS",
+    "name": "warriors",
+    "teamId": "E7YSDG",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "siddhu",
+        "email": "thelastcall519@gmail.com",
+        "status": "invited"
+      },
+      {
+        "name": "nikhil",
+        "email": "theatredreamers@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 10,
+    "isActive": true,
+    "createdAt": {
+      "_seconds": 1770536586,
+      "_nanoseconds": 757000000
+    },
+    "updatedAt": {
+      "_seconds": 1770536586,
+      "_nanoseconds": 757000000
+    }
+  },
+  {
+    "id": "Y96JnmSkAmY5c0krx3Oc",
+    "name": "huh",
+    "teamId": "FNUMGA",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "honey",
+        "email": "thelastcall519@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 10,
+    "createdAt": {
+      "_seconds": 1770505760,
+      "_nanoseconds": 113000000
+    },
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770534604,
+      "_nanoseconds": 0
+    }
+  },
+  {
+    "id": "ZRVE75TTRZQt6y0EEGh1",
+    "name": "soul",
+    "teamId": "4PJVHX",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "maxSize": 5,
+    "createdAt": {
+      "_seconds": 1770191797,
+      "_nanoseconds": 27000000
+    },
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770203899,
+      "_nanoseconds": 953000000
+    }
+  },
+  {
+    "id": "eILLQCHLJWgHYTaD5ap5",
+    "name": "chiruu",
+    "teamId": "1WCJIY",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "invitedMembers": [
+      {
+        "name": "nani",
+        "email": "theatredreamers@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 5,
+    "createdAt": {
+      "_seconds": 1770474182,
+      "_nanoseconds": 732000000
+    },
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+      "mXCYYR1W8MeDMXTYXMR4mgQcDbA2"
+    ],
+    "activity": [
+      {
+        "id": "17704744554958xsmd",
+        "text": "Bug 'login page crashing' reported by thaliva",
+        "date": {
+          "_seconds": 1770474455,
+          "_nanoseconds": 495000000
+        }
+      }
+    ],
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770474745,
+      "_nanoseconds": 270000000
+    }
+  },
+  {
+    "id": "gsfgw4A11fguoRo0jnty",
+    "name": "devil",
+    "teamId": "J7NHD3",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "invitedMembers": [
+      {
+        "name": "Madhavchari",
+        "email": "theatredreamers@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 10,
+    "createdAt": {
+      "_seconds": 1770474802,
+      "_nanoseconds": 619000000
+    },
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+      "mXCYYR1W8MeDMXTYXMR4mgQcDbA2"
+    ],
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770478167,
+      "_nanoseconds": 992000000
+    }
+  },
+  {
+    "id": "jfzkC0O6cwYXIZmI8l59",
+    "name": "Taskhive",
+    "teamId": "QUUNE8",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "invitedMembers": [
+      {
+        "name": "Murthi",
+        "email": "theatredreamers@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 5,
+    "createdAt": {
+      "_seconds": 1770478238,
+      "_nanoseconds": 137000000
+    },
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+      "mXCYYR1W8MeDMXTYXMR4mgQcDbA2"
+    ],
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770478355,
+      "_nanoseconds": 724000000
+    }
+  },
+  {
+    "id": "jx6rCFoWOZY2T2SBdN0z",
+    "name": "soul",
+    "teamId": "D0Q2ZH",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "n",
+        "email": "madhavvadkapuram@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 10,
+    "createdAt": {
+      "_seconds": 1770205365,
+      "_nanoseconds": 79000000
+    },
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770205999,
+      "_nanoseconds": 724000000
+    }
+  },
+  {
+    "id": "lNYclG5ePuH4tYBK1zQq",
+    "name": "7spirits",
+    "teamId": "ICLK58",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "thalaiva",
+        "email": "theatredreamers@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 5,
+    "createdAt": {
+      "_seconds": 1770206042,
+      "_nanoseconds": 312000000
+    },
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770209560,
+      "_nanoseconds": 840000000
+    }
+  },
+  {
+    "id": "mZR7Ea7yUWYHaURzemIw",
+    "name": "hi",
+    "teamId": "MM3WHI",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "maxSize": 10,
+    "isActive": true,
+    "createdAt": {
+      "_seconds": 1770503833,
+      "_nanoseconds": 317000000
+    },
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+      "XVMVBUPwSBZtLBUMveBrkcvMWK93"
+    ],
+    "invitedMembers": [
+      {
+        "name": "helios",
+        "email": "heliospred16@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "updatedAt": {
+      "_seconds": 1770504022,
+      "_nanoseconds": 717000000
+    },
+    "activity": [
+      {
+        "id": "1770504412392aw0da",
+        "text": "Bug 'hi' reported by madhav",
+        "date": {
+          "_seconds": 1770504412,
+          "_nanoseconds": 392000000
+        }
+      },
+      {
+        "id": "1770505282799k2cp6",
+        "text": "Bug 'nmn' reported by madhav",
+        "date": {
+          "_seconds": 1770505282,
+          "_nanoseconds": 799000000
+        }
+      },
+      {
+        "id": "17705056141151qxtb",
+        "text": "Bug 'bjb' reported by madhav",
+        "date": {
+          "_seconds": 1770505614,
+          "_nanoseconds": 115000000
+        }
+      },
+      {
+        "id": "1770505646980s0j3d",
+        "text": "Bug 'bjb' status changed to Resolved",
+        "date": {
+          "_seconds": 1770505646,
+          "_nanoseconds": 980000000
+        }
+      },
+      {
+        "id": "1770505648988w56sf",
+        "text": "Bug 'nmn' status changed to Resolved",
+        "date": {
+          "_seconds": 1770505648,
+          "_nanoseconds": 988000000
+        }
+      },
+      {
+        "id": "17705056506800gc3g",
+        "text": "Bug 'hi' status changed to Resolved",
+        "date": {
+          "_seconds": 1770505650,
+          "_nanoseconds": 680000000
+        }
+      }
+    ]
+  },
+  {
+    "id": "mytNDziePSwL16hlPBAy",
+    "name": "hi",
+    "teamId": "04834G",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "madhav",
+        "email": "madhavvadkaapuram@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 5,
+    "createdAt": {
+      "_seconds": 1770503767,
+      "_nanoseconds": 849000000
+    },
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770503805,
+      "_nanoseconds": 568000000
+    }
+  },
+  {
+    "id": "rgvs96m9LqG8HXXU6zzQ",
+    "name": "taskhive",
+    "teamId": "BW8XP8",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "maxSize": 5,
+    "createdAt": {
+      "_seconds": 1770471550,
+      "_nanoseconds": 774000000
+    },
+    "invitedMembers": [
+      {
+        "name": "Madhav",
+        "email": "madhavvadkapuram@gmail.com",
+        "status": "invited"
+      },
+      {
+        "name": "Manaswini",
+        "email": "manumanaswini7598@gmail.com",
+        "status": "invited"
+      },
+      {
+        "name": "Sathvik",
+        "email": "ysk20052024@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770472550,
+      "_nanoseconds": 763000000
+    }
+  },
+  {
+    "id": "s3LtnDqOiHOie40p8my0",
+    "name": "7spirits",
+    "teamId": "156ON9",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "thalaiva",
+        "email": "theatredreamers@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 10,
+    "createdAt": {
+      "_seconds": 1770209973,
+      "_nanoseconds": 888000000
+    },
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770215424,
+      "_nanoseconds": 982000000
+    }
+  },
+  {
+    "id": "wEzaQNSv8m6dyHga0Jni",
+    "name": "mass",
+    "teamId": "8VYF3J",
+    "leaderId": "ekRJOZ7AEgOq2XoMAPLuRb8U9is2",
+    "members": [
+      "ekRJOZ7AEgOq2XoMAPLuRb8U9is2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "manaswini",
+        "email": "theatredreamers@gmail.com",
+        "status": "invited"
+      },
+      {
+        "name": "madhav",
+        "email": "madhavvadkapuram@gmail.com",
+        "status": "invited"
+      },
+      {
+        "name": "vishnu",
+        "email": "madhavvadkapuram3@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 5,
+    "isActive": true,
+    "createdAt": {
+      "_seconds": 1770211299,
+      "_nanoseconds": 412000000
+    },
+    "updatedAt": {
+      "_seconds": 1770211299,
+      "_nanoseconds": 412000000
+    }
+  },
+  {
+    "id": "z4mn9d93Oag2mQVFummO",
+    "name": "mass",
+    "teamId": "GZPP23",
+    "leaderId": "GYbWAxNzHugVDxJtY9zi1bKjVQM2",
+    "members": [
+      "GYbWAxNzHugVDxJtY9zi1bKjVQM2"
+    ],
+    "invitedMembers": [
+      {
+        "name": "manaswini",
+        "email": "theatredreamers@gmail.com",
+        "status": "invited"
+      }
+    ],
+    "maxSize": 10,
+    "createdAt": {
+      "_seconds": 1770215435,
+      "_nanoseconds": 563000000
+    },
+    "isActive": false,
+    "updatedAt": {
+      "_seconds": 1770505715,
+      "_nanoseconds": 554000000
+    }
+  }
+]
