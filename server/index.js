@@ -20,7 +20,15 @@ import "./config/firebase.js"; // Initialize Firebase Admin
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+    origin: process.env.CORS_ORIGIN || process.env.FRONTEND_URL || "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
@@ -45,6 +53,11 @@ app.use("/api/ai", aiRoutes);
 app.use("/api/teams", teamRoutes);
 app.use("/api/voice", voiceRoutes);
 app.use("/api/members", memberRoutes);
+
+// ✅ Health check for Render
+app.get("/", (req, res) => {
+    res.json({ status: "active", message: "TaskHive API is running" });
+});
 
 
 // ✅ Server + Socket setup
