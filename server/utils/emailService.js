@@ -17,9 +17,20 @@ const transporter = nodemailer.createTransport({
 });
 
 // Verify connection configuration
+export const testConnection = async () => {
+  try {
+    await transporter.verify();
+    console.log("✅ Email service is ready to send messages");
+    return { success: true, message: "Email service is ready" };
+  } catch (error) {
+    console.error("❌ Email service connection error:", error);
+    return { success: false, message: error.message, stack: error.stack };
+  }
+};
+
 transporter.verify(function (error, success) {
   if (error) {
-    console.error("❌ Email service connection error:", error);
+    console.error("❌ Email service connection error (startup):", error);
   } else {
     console.log("✅ Email service is ready to send messages");
   }
@@ -546,6 +557,7 @@ export const sendBugAssignmentEmail = async (email, name, bugData, reporterName,
 };
 
 export default {
+  testConnection,
   generateOTP,
   sendOTP,
   sendWelcomeEmail,

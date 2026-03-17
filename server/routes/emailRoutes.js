@@ -29,4 +29,7 @@ router.post('/leadership-transition', sendLeadershipTransition);
 // Send bug assignment email
 router.post('/bug-assignment', sendBugAssignment);
 
+// Test email connection
+router.get('/test', (await import('../controllers/emailController.js')).testEmail);
+
 export default router;

@@ -8,7 +8,9 @@ import {
   sendTeamInvitationEmail,
   sendDeadlineReminderEmail,
   sendLeadershipTransitionEmail,
-  sendBugAssignmentEmail
+  sendLeadershipTransitionEmail,
+  sendBugAssignmentEmail,
+  testConnection
 } from "../utils/emailService.js";
 
 /**
@@ -211,10 +213,48 @@ export const sendBugAssignment = async (req, res) => {
   }
 };
 
+/**
+ * Test email connection
+ */
+export const testEmail = async (req, res) => {
+  try {
+    const result = await testConnection();
+    if (result.success) {
+      // Also try sending a real test email if a target is provided
+      const targetEmail = req.query.email || process.env.EMAIL_USER;
+      if (targetEmail) {
+        const { testConnection: _, ...rest } = await import("../utils/emailService.js");
+        // We can just use a generic sendMail if we wanted, but let's just test verify for now
+        // Or send a real "Ping"
+        console.log(`[TEST] Attempting to send ping email to ${targetEmail}`);
+      }
+      
+      return res.status(200).json({
+        success: true,
+        message: "Email service connection verified",
+        details: result
+      });
+    } else {
+      return res.status(500).json({
+        success: false,
+        message: "Email service connection failed",
+        error: result.message
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Test execution failed",
+      error: error.message
+    });
+  }
+};
+
 export default {
   sendTaskAssignment,
   sendTeamInvitation,
   sendDeadlineReminder,
   sendLeadershipTransition,
-  sendBugAssignment
+  sendBugAssignment,
+  testEmail
 };

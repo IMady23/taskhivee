@@ -71,7 +71,7 @@ export const createTask = async (req, res) => {
           }
         }
       } catch (emailError) {
-        console.warn('⚠️ Failed to send assignment email:', emailError.message);
+        console.error('❌ Failed to send assignment email during createTask:', emailError);
         // Don't fail the whole request if email fails
       }
     }
