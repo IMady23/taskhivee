@@ -9,22 +9,37 @@ dotenv.config();
 const frontendUrlShared = process.env.FRONTEND_URL || "http://localhost:5173";
 
 const transporter = nodemailer.createTransport({
-  service: process.env.EMAIL_SERVICE || "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // Use SSL
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD,
   },
+  connectionTimeout: 10000, // 10 seconds
+  greetingTimeout: 10000,
 });
 
 // Verify connection configuration
 export const testConnection = async () => {
   try {
+    console.log("[DEBUG] Checking Email Env Vars...");
+    console.log(`- EMAIL_USER: ${process.env.EMAIL_USER ? "DEFINED" : "MISSING"}`);
+    console.log(`- EMAIL_PASSWORD: ${process.env.EMAIL_PASSWORD ? "DEFINED" : "MISSING"}`);
+    console.log(`- EMAIL_SERVICE: ${process.env.EMAIL_SERVICE || "gmail (default)"}`);
+    
     await transporter.verify();
     console.log("✅ Email service is ready to send messages");
     return { success: true, message: "Email service is ready" };
   } catch (error) {
     console.error("❌ Email service connection error:", error);
-    return { success: false, message: error.message, stack: error.stack };
+    return { 
+      success: false, 
+      message: error.message, 
+      code: error.code,
+      command: error.command,
+      stack: error.stack 
+    };
   }
 };
 
