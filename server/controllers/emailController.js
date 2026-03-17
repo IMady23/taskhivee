@@ -8,7 +8,6 @@ import {
   sendTeamInvitationEmail,
   sendDeadlineReminderEmail,
   sendLeadershipTransitionEmail,
-  sendLeadershipTransitionEmail,
   sendBugAssignmentEmail,
   testConnection
 } from "../utils/emailService.js";
