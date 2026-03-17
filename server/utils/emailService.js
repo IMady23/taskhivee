@@ -6,6 +6,8 @@ import path from "path";
 dotenv.config({ path: path.resolve(process.cwd(), '../.env') });
 // Also try default location just in case
 dotenv.config();
+const frontendUrlShared = process.env.FRONTEND_URL || "http://localhost:5173";
+
 const transporter = nodemailer.createTransport({
   service: process.env.EMAIL_SERVICE || "gmail",
   auth: {
@@ -78,8 +80,9 @@ export const sendOTP = async (email, otp, name) => {
     console.log(`✅ TP received check`);
     return true;
   } catch (error) {
-    console.warn("⚠️ Email service not configured or failed:", error.message);
+    console.error("❌ Email service failed (sendOTP):", error);
     // Return true properly so we don't throw 500s for missing config in dev
+    // But in production, this log will help us debug.
     return true;
   }
 };
@@ -94,8 +97,8 @@ export const sendWelcomeEmail = async (email, name, role) => {
   try {
     const dashboardLink =
       role === "leader"
-        ? "http://localhost:5173/leader-dashboard"
-        : "http://localhost:5173/member-dashboard";
+        ? `${frontendUrlShared}/leader-dashboard`
+        : `${frontendUrlShared}/member-dashboard`;
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
@@ -245,7 +248,7 @@ export const sendTaskAssignmentEmail = async (email, name, taskData, leaderName,
               Please log in to TaskHive to view and update the task status.
             </p>
             
-            <a href="http://localhost:5173/login" style="display: inline-block; background-color: #1e40af; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; margin-bottom: 20px;">
+            <a href="${frontendUrlShared}/login" style="display: inline-block; background-color: #1e40af; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; margin-bottom: 20px;">
               View My Task
             </a>
           </div>
@@ -257,7 +260,7 @@ export const sendTaskAssignmentEmail = async (email, name, taskData, leaderName,
     console.log(`✅ Task assignment email sent to ${email}`);
     return true;
   } catch (error) {
-    console.warn("⚠️ Email service not configured or failed:", error.message);
+    console.error("❌ Email service failed (sendTaskAssignmentEmail):", error);
     return true;
   }
 };
@@ -399,7 +402,7 @@ export const sendDeadlineReminderEmail = async (email, name, taskData, leaderNam
               Please update the task status in TaskHive.
             </p>
             
-            <a href="http://localhost:5173/login" style="display: inline-block; background-color: #be123c; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; margin-bottom: 20px;">
+            <a href="${frontendUrlShared}/login" style="display: inline-block; background-color: #be123c; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; margin-bottom: 20px;">
               Update Task Status
             </a>
           </div>
@@ -464,7 +467,7 @@ export const sendLeadershipTransitionEmail = async (email, name, proposedBy, rea
             </div>
 
             <div style="text-align: center;">
-              <a href="http://localhost:5173/auth?mode=login&transition=true&teamName=${encodeURIComponent(teamName)}&teamCode=${teamCode}" style="display: inline-block; background-color: white; color: #0B0F14; padding: 15px 40px; text-decoration: none; border-radius: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px;">Login to TaskHive</a>
+              <a href="${frontendUrlShared}/auth?mode=login&transition=true&teamName=${encodeURIComponent(teamName)}&teamCode=${teamCode}" style="display: inline-block; background-color: white; color: #0B0F14; padding: 15px 40px; text-decoration: none; border-radius: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px;">Login to TaskHive</a>
             </div>
 
             <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 40px 0;">
@@ -525,7 +528,7 @@ export const sendBugAssignmentEmail = async (email, name, bugData, reporterName,
               Please log in to TaskHive to view the details and resolve this bug.
             </p>
             
-            <a href="http://localhost:5173/login" style="display: inline-block; background-color: #dc2626; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; margin-bottom: 20px;">
+            <a href="${frontendUrlShared}/login" style="display: inline-block; background-color: #dc2626; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; margin-bottom: 20px;">
               View Bug
             </a>
           </div>
@@ -537,7 +540,7 @@ export const sendBugAssignmentEmail = async (email, name, bugData, reporterName,
     console.log(`✅ Bug assignment email sent to ${email}`);
     return true;
   } catch (error) {
-    console.warn("⚠️ Email service not configured or failed:", error.message);
+    console.error("❌ Email service failed (sendBugAssignmentEmail):", error);
     return true;
   }
 };
