@@ -28,7 +28,21 @@ try {
       credential: admin.credential.cert(serviceAccount),
     });
   } else if (process.env.FIREBASE_PRIVATE_KEY && process.env.FIREBASE_CLIENT_EMAIL && process.env.FIREBASE_PROJECT_ID) {
-    const privateKey = process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n');
+    let privateKey = process.env.FIREBASE_PRIVATE_KEY;
+    
+    // Robust parsing: Remove quotes if the user pasted them from .env
+    if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
+      privateKey = privateKey.substring(1, privateKey.length - 1);
+    }
+    
+    // Replace literal \n characters with actual newlines
+    privateKey = privateKey.replace(/\\n/g, '\n');
+
+    console.log("Firebase Private Key format check:");
+    console.log("- Starts with BEGIN:", privateKey.startsWith('-----BEGIN PRIVATE KEY-----'));
+    console.log("- Ends with END:", privateKey.includes('-----END PRIVATE KEY-----'));
+    console.log("- Length:", privateKey.length);
+
     adminApp = admin.initializeApp({
       credential: admin.credential.cert({
         projectId: process.env.FIREBASE_PROJECT_ID,
