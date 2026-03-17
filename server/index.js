@@ -21,8 +21,24 @@ dotenv.config();
 
 const app = express();
 
+const allowedOrigins = [
+    ...(process.env.CORS_ORIGIN || "").split(",").map(o => o.trim()),
+    ...(process.env.FRONTEND_URL || "").split(",").map(o => o.trim()),
+    "http://localhost:5173"
+].filter(Boolean);
+
 const corsOptions = {
-    origin: process.env.CORS_ORIGIN || process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl)
+        if (!origin) return callback(null, true);
+        
+        if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.some(ao => origin.startsWith(ao))) {
+            callback(null, true);
+        } else {
+            console.log("CORS Blocked for origin:", origin);
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
