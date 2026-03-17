@@ -9,7 +9,8 @@ import {
     sendTeamInvitation,
     sendDeadlineReminder,
     sendLeadershipTransition,
-    sendBugAssignment
+    sendBugAssignment,
+    testEmail
 } from '../controllers/emailController.js';
 
 const router = express.Router();
@@ -30,6 +31,6 @@ router.post('/leadership-transition', sendLeadershipTransition);
 router.post('/bug-assignment', sendBugAssignment);
 
 // Test email connection
-router.get('/test', (await import('../controllers/emailController.js')).testEmail);
+router.get('/test', testEmail);
 
 export default router;

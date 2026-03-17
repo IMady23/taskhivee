@@ -1,5 +1,5 @@
 /**
- * Email Controller
+ * Email Controller - v1.0.1
  * Handles email notifications for TaskHive events
  */
 
