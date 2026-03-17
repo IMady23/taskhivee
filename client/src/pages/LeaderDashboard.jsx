@@ -60,9 +60,8 @@ import { checkAndAwardBadges } from '../services/badgeService';
 import KanbanBoard from '../components/kanban/KanbanBoard';
 import CalendarView from '../components/calendar/CalendarView';
 import Skeleton from '../components/ui/Skeleton';
-import FrictionTaskDashboard from '../components/FrictionTaskDashboard';
-import SummaryGeneratorButton from '../components/SummaryGeneratorButton';
-
+import { fileToBase64, downloadAttachment, isLocalAttachment } from '../utils/fileUtils';
+import Celebration from '../components/ui/Celebration';
 
 /**
  * Leader Dashboard
@@ -232,6 +231,10 @@ export default function LeaderDashboard() {
   // Activities State
   const [activities, setActivities] = useState([]);
   const [showAllActivities, setShowAllActivities] = useState(false);
+  
+  // Celebration State
+  const [showCelebration, setShowCelebration] = useState(false);
+  const [celebrationMessage, setCelebrationMessage] = useState("");
 
   // Redirect if not authenticated or not a leader
   useEffect(() => {
@@ -658,14 +661,21 @@ export default function LeaderDashboard() {
 
     const toastId = toast.loading("Uploading attachment...");
     try {
-      const path = `tasks/${user.uid}/${Date.now()}`;
-      const url = await uploadFile(file, path);
-
-      setTaskForm(prev => ({
-        ...prev,
-        attachments: [...(prev.attachments || []), { name: file.name, url }]
-      }));
-      toast.success("Attached!", { id: toastId });
+      const base64Data = await fileToBase64(file);
+      const url = `local_file_${Date.now()}_${file.name}`;
+      
+      // Store in localStorage instead of Firebase
+      try {
+        localStorage.setItem(url, base64Data);
+        setTaskForm(prev => ({
+          ...prev,
+          attachments: [...(prev.attachments || []), { name: file.name, url }]
+        }));
+        toast.success("Attached!", { id: toastId });
+      } catch (storageError) {
+        console.error("Local storage error:", storageError);
+        toast.error("File too large for local storage or storage full.", { id: toastId });
+      }
     } catch (error) {
       console.error("Upload error:", error);
       toast.error("Upload failed", { id: toastId });
@@ -1909,26 +1919,6 @@ export default function LeaderDashboard() {
                     </div>
                   </div>
 
-                  {/* NEW MENTOR-IMPRESSING FEATURES */}
-                  <div className="space-y-8 mt-8">
-                    {/* Deadline Risk Prediction */}
-                    <div className="bg-[var(--card-bg)] rounded-xl shadow-lg p-6 border border-[var(--border-color)]">
-                      <div className="flex items-center gap-3 mb-6">
-                        <AlertTriangle className="w-6 h-6 text-red-400" />
-                        <h3 className="text-lg font-semibold text-[var(--text-primary)]">High-Risk Tasks</h3>
-                      </div>
-                      <FrictionTaskDashboard teamId={team.id} />
-                    </div>
-
-                    {/* AI Weekly Summary Generator */}
-                    <div className="bg-[var(--card-bg)] rounded-xl shadow-lg p-6 border border-[var(--border-color)]">
-                      <div className="flex items-center gap-3 mb-6">
-                        <FileText className="w-6 h-6 text-purple-400" />
-                        <h3 className="text-lg font-semibold text-[var(--text-primary)]">AI Weekly Summary</h3>
-                      </div>
-                      <SummaryGeneratorButton teamId={team.id} />
-                    </div>
-                  </div>
 
                   {/* Recent Activities Section */}
                   <div className="bg-[var(--card-bg)] rounded-xl shadow-lg p-6 mt-8 border border-[var(--border-color)]">
@@ -2478,7 +2468,13 @@ export default function LeaderDashboard() {
                           <div className="mt-2 space-y-2">
                             {taskForm.attachments.map((file, idx) => (
                               <div key={idx} className="flex items-center gap-2 text-sm bg-blue-900/20 px-3 py-1.5 rounded-lg w-fit border border-blue-500/20">
-                                <a href={file.url} target="_blank" rel="noreferrer" className="text-blue-400 underline truncate max-w-[200px]">
+                                <a 
+                                  href={isLocalAttachment(file.url) ? "#" : file.url} 
+                                  onClick={(e) => downloadAttachment(e, file.url, file.name)}
+                                  target={isLocalAttachment(file.url) ? undefined : "_blank"} 
+                                  rel={isLocalAttachment(file.url) ? undefined : "noreferrer"} 
+                                  className="text-blue-400 underline truncate max-w-[200px]"
+                                >
                                   {file.name}
                                 </a>
                                 <button
@@ -2614,9 +2610,10 @@ export default function LeaderDashboard() {
                                     {task.attachments.map((file, idx) => (
                                       <a
                                         key={idx}
-                                        href={file.url}
-                                        target="_blank"
-                                        rel="noreferrer"
+                                        href={isLocalAttachment(file.url) ? "#" : file.url}
+                                        onClick={(e) => downloadAttachment(e, file.url, file.name)}
+                                        target={isLocalAttachment(file.url) ? undefined : "_blank"}
+                                        rel={isLocalAttachment(file.url) ? undefined : "noreferrer"}
                                         className="flex items-center gap-1 text-xs bg-gray-800 px-2 py-1 rounded hover:bg-gray-700 text-blue-400 transition border border-gray-700"
                                       >
                                         <Paperclip className="w-3 h-3" />
@@ -2698,6 +2695,13 @@ export default function LeaderDashboard() {
                                     )}
                                   </>
                                 )}
+                                <button
+                                  onClick={() => handleUpdateTaskStatus(task.id, 'Done')}
+                                  className="p-2 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-900/20 rounded-lg transition"
+                                  title="Mark as Done"
+                                >
+                                  <Check className="w-4 h-4" />
+                                </button>
                                 <button
                                   onClick={() => handleEditTask(task)}
                                   className="p-2 text-blue-400 hover:text-blue-300 hover:bg-blue-900/20 rounded-lg transition"

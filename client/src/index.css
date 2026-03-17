@@ -132,6 +132,76 @@
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
   }
+  
+  /* 🔋 Cyberpunk Theme - High tech, low life */
+  .theme-cyberpunk {
+    --background: 260 50% 8%;       /* Very dark purple */
+    --foreground: 320 100% 70%;     /* Neon pink text */
+    
+    --card: 260 40% 12%;
+    --card-foreground: 320 100% 70%;
+    
+    --primary: 180 100% 50%;        /* Neon cyan */
+    --primary-foreground: 260 50% 8%;
+    
+    --secondary: 320 100% 50%;      /* Solid pink */
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 260 30% 20%;
+    --muted-foreground: 320 50% 60%;
+    
+    --accent: 180 100% 50%;
+    --accent-foreground: 260 50% 8%;
+    
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 320 100% 40%;
+    --input: 260 40% 15%;
+    --ring: 180 100% 50%;
+    
+    --success: 120 100% 50%;        /* Toxic green */
+    --warning: 40 100% 50%;         /* Warning yellow */
+    
+    --shadow-sm: 0 0 5px rgba(0, 255, 255, 0.2);
+    --shadow-md: 0 0 15px rgba(0, 255, 255, 0.3);
+    --shadow-lg: 0 0 25px rgba(0, 255, 255, 0.4);
+  }
+
+  /* 🏢 Corporate Slate Theme - Ultra professional grayscale with blue accents */
+  .theme-corporate {
+    --background: 210 20% 95%;      /* Light cool gray */
+    --foreground: 210 30% 20%;      /* Deep slate */
+    
+    --card: 0 0% 100%;
+    --card-foreground: 210 30% 20%;
+    
+    --primary: 210 80% 40%;         /* Corporate Blue */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 210 15% 90%;
+    --secondary-foreground: 210 40% 25%;
+    
+    --muted: 210 10% 92%;
+    --muted-foreground: 210 15% 50%;
+    
+    --accent: 210 80% 40%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 210 15% 85%;
+    --input: 0 0% 100%;
+    --ring: 210 80% 40%;
+    
+    --success: 150 70% 35%;
+    --warning: 35 90% 45%;
+    
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(30, 40, 60, 0.08);
+    --shadow-lg: 0 10px 25px rgba(30, 40, 60, 0.1);
+  }
 }
 
 /* Base Styles */
@@ -160,6 +230,17 @@
   /* Dark mode - solid background */
   .dark body {
     background: hsl(var(--background));
+  }
+  
+  /* Cyberpunk mode background overrides */
+  .theme-cyberpunk body {
+    background: radial-gradient(circle at center, #1b0c30 0%, #080312 100%);
+    background-color: hsl(var(--background));
+  }
+  
+  /* Corporate mode background overrides */
+  .theme-corporate body {
+    background: #f4f6f9;
   }
   
   h1, h2, h3, h4, h5, h6 {

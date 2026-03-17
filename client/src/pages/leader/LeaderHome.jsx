@@ -6,10 +6,6 @@ import { AuthContext } from '../../context/AuthContext';
 import { getTaskStats } from '../../services/taskService';
 import { getTeamMembers, getTeamByDocId } from '../../services/teamService';
 import WorkloadDashboard from '../../components/WorkloadDashboard';
-import FrictionTaskDashboard from '../../components/FrictionTaskDashboard';
-import SummaryGeneratorButton from '../../components/SummaryGeneratorButton';
-import SummaryDisplay from '../../components/SummaryDisplay';
-import SummaryHistory from '../../components/SummaryHistory';
 
 export default function LeaderHome() {
   const { user } = useContext(AuthContext);
@@ -19,7 +15,6 @@ export default function LeaderHome() {
   const [teamMembers, setTeamMembers] = useState([]);
   const [team, setTeam] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [latestSummary, setLatestSummary] = useState(null);
 
   useEffect(() => {
     loadDashboardData();
@@ -177,38 +172,13 @@ export default function LeaderHome() {
       </div>
 
       {/* NEW FEATURES */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 gap-6 mb-6">
         {/* Workload Heat Indicator */}
         {user?.teamId && (
           <WorkloadDashboard teamId={user.teamId} />
         )}
-
-        {/* Friction Tasks */}
-        {user?.teamId && (
-          <FrictionTaskDashboard teamId={user.teamId} />
-        )}
       </div>
 
-      {/* AI Weekly Summary */}
-      {user?.teamId && (
-        <div className="bg-[#151921] rounded-lg p-6 shadow-sm border border-[#1e293b] mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-white">AI Weekly Summary</h3>
-            <SummaryGeneratorButton 
-              teamId={user.teamId} 
-              onSummaryGenerated={setLatestSummary}
-            />
-          </div>
-          
-          {latestSummary && (
-            <div className="mb-4">
-              <SummaryDisplay summary={latestSummary} />
-            </div>
-          )}
-
-          <SummaryHistory teamId={user.teamId} />
-        </div>
-      )}
     </div>
   );
 }

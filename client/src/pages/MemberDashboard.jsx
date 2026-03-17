@@ -36,6 +36,7 @@ import Sidebar from '../components/Sidebar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import BugReportForm from '../components/BugReportForm';
 import BugList from '../components/BugList';
+import { downloadAttachment, isLocalAttachment } from '../utils/fileUtils';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { toast } from 'react-hot-toast';
@@ -45,6 +46,7 @@ import { useEventReminders } from '../hooks/useEventReminders.jsx';
 import { Trash2 } from 'lucide-react';
 import Skeleton from '../components/ui/Skeleton';
 import CommandPalette from '../components/CommandPalette';
+import Celebration from '../components/ui/Celebration';
 
 const MOTIVATIONAL_QUOTES = [
   "Quality is not an act, it is a habit.",
@@ -89,6 +91,10 @@ export default function MemberDashboard() {
   const { requestReassignment } = useContext(TasksContext);
   const [showReassignConfirm, setShowReassignConfirm] = useState(null); // taskId
   const [reassignLoading, setReassignLoading] = useState(false);
+  
+  // Celebration State
+  const [showCelebration, setShowCelebration] = useState(false);
+  const [celebrationMessage, setCelebrationMessage] = useState("");
 
   const handleRequestReassignment = async (taskId) => {
     setReassignLoading(true);
@@ -227,11 +233,22 @@ export default function MemberDashboard() {
       // (Since teamTasks is a separate subscription, it might take a moment to reflect via socket)
       setTeamTasks(prev => prev.map(t => t.id === taskId ? { ...t, status: targetStatus } : t));
 
+      setTeamTasks(prev => prev.map(t => t.id === taskId ? { ...t, status: targetStatus } : t));
+
       setSuccess(
         targetStatus === 'Review'
           ? 'Task submitted for review.'
           : `Task updated to "${targetStatus}"`
       );
+      
+      // Trigger Celebration if all tasks are Done/Review
+      const updatedTasks = tasks.map(t => t.id === taskId ? { ...t, status: targetStatus } : t);
+      const pendingCount = updatedTasks.filter(t => t.status !== 'Done' && t.status !== 'Review').length;
+      if (pendingCount === 0 && updatedTasks.length > 0) {
+          setCelebrationMessage("All Tasks Completed!");
+          setShowCelebration(true);
+      }
+
       setTimeout(() => setSuccess(''), 3000);
     } catch (error) {
       console.error('Error updating task:', error);
@@ -350,6 +367,7 @@ export default function MemberDashboard() {
       <div className="flex-1 flex flex-col relative z-10 ml-64">
         <Navbar />
         <main className="flex-1 overflow-auto p-8">
+          <Celebration active={showCelebration} message={celebrationMessage} onClose={() => setShowCelebration(false)} />
           <div className="max-w-7xl mx-auto space-y-8">
 
             {/* 1. Welcome Section */}
@@ -669,17 +687,17 @@ export default function MemberDashboard() {
                                   {/* Attachments */}
                                   {task.attachments && task.attachments.length > 0 && (
                                     <div className="flex flex-wrap gap-2 mt-2">
-                                      {task.attachments.map((file, idx) => (
-                                        <a
-                                          key={idx}
-                                          href={file.url}
-                                          target="_blank"
-                                          rel="noreferrer"
-                                          className="flex items-center gap-1 text-xs bg-[var(--bg-secondary)] px-2 py-1 rounded hover:bg-[var(--card-bg)] text-blue-400 transition border border-[var(--border-color)]"
-                                        >
-                                          <Paperclip size={10} />
-                                          <span className="truncate max-w-[150px]">{file.name}</span>
-                                        </a>
+                                      {task.attachments.map((file, idx) => (                                          <a
+                                            key={idx}
+                                            href={isLocalAttachment(file.url) ? "#" : file.url}
+                                            onClick={(e) => downloadAttachment(e, file.url, file.name)}
+                                            target={isLocalAttachment(file.url) ? undefined : "_blank"}
+                                            rel={isLocalAttachment(file.url) ? undefined : "noreferrer"}
+                                            className="flex items-center gap-1 text-xs bg-[var(--bg-secondary)] px-2 py-1 rounded hover:bg-[var(--card-bg)] text-blue-400 transition border border-[var(--border-color)]"
+                                          >
+                                            <Paperclip size={10} />
+                                            <span className="truncate max-w-[150px]">{file.name}</span>
+                                          </a>
                                       ))}
                                     </div>
                                   )}

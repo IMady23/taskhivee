@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState, useContext } from 'react';
 import { AuthContext } from './AuthContext';
 import * as fs from '../services/firestoreService';
+import { API_BASE_URL } from '../config';
 
 export const BugsContext = createContext();
 const STORAGE_KEY = 'taskhive_bugs_v1';
@@ -106,6 +107,41 @@ export function BugsProvider({ children }) {
           console.warn("Failed to notify/chat about bug", notifError);
         }
       }
+
+      // Handle bug assignment email and notification
+      if (bug.assignedTo && typeof bug.assignedTo === 'string') {
+        try {
+          const assignee = JSON.parse(bug.assignedTo);
+          if (assignee.email) {
+            await fetch(`${API_BASE_URL}/email/bug-assignment`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                email: assignee.email,
+                name: assignee.name,
+                bugData: { title: bug.title, severity: bug.severity },
+                reporterName: t.reportedByName,
+                teamName: teamId
+              })
+            });
+
+            // Notify Assignee in-app
+            const { sendNotification } = await import('../services/notificationService');
+            // If they happen to be a leader, they already got notified, but let's notify again explicitly about being ASSIGNED
+            // Or just notify anyways
+            await sendNotification(
+              assignee.id,
+              teamId,
+              'bug_attention', // Red
+              'Bug Assigned to You',
+              `${t.reportedByName} assigned you to resolve: ${bug.title}`
+            );
+          }
+        } catch (emailErr) {
+          console.warn("Failed to send bug assignment email:", emailErr);
+        }
+      }
+
     } catch (e) {
       console.error('addBug error', e);
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import LeaderSidebar from '../components/LeaderSidebar';
+import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
 import { BugsProvider } from '../context/BugsContext';
 import { TasksProvider } from '../context/TasksContext';
@@ -12,11 +12,13 @@ export default function LeaderLayout() {
 
   return (
     <div className="flex h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] relative overflow-hidden transition-colors duration-300">
-      <LeaderSidebar />
+      <Sidebar role="leader" />
 
       <div className="flex-1 ml-64 relative z-10 transition-colors duration-300 flex flex-col">
-        {/* Navbar with logout button */}
-        <Navbar />
+        {/* Navbar with logout button - Made sticky */}
+        <div className="sticky top-0 z-50">
+          <Navbar />
+        </div>
 
         {/* Main content with context providers and transitions */}
         <div className="flex-1 overflow-auto bg-[#0B0F14]/20 relative">

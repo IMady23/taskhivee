@@ -3,6 +3,7 @@ import { AuthContext } from '../context/AuthContext';
 import { updateUserProfile } from '../services/firestoreService';
 import { uploadFile } from '../services/fileService';
 import { toast } from 'react-hot-toast';
+import { BellOff, BellRing, Settings as SettingsIcon } from 'lucide-react';
 import { User, Camera, Mail, Shield, Save, Loader2, ArrowLeft, Trash2 } from 'lucide-react';
 import { deleteAccount, canDeleteAccount } from '../services/accountService';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -22,6 +23,14 @@ export default function Profile() {
     const [previewUrl, setPreviewUrl] = useState(user?.photoURL || null);
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [deletingAccount, setDeletingAccount] = useState(false);
+    
+    // Notification Preferences
+    const [emailDigest, setEmailDigest] = useState(
+      localStorage.getItem(`taskhive_digest_${user?.email}`) === 'true'
+    );
+    const [muteChat, setMuteChat] = useState(
+      localStorage.getItem(`taskhive_mutechat_${user?.email}`) === 'true'
+    );
 
     useEffect(() => {
         if (user) {
@@ -116,7 +125,11 @@ export default function Profile() {
                 name: displayName,
                 bio: bio
             });
-            toast.success('Profile updated!');
+            // Save Notification Prefs to localStorage
+            localStorage.setItem(`taskhive_digest_${user.email}`, emailDigest);
+            localStorage.setItem(`taskhive_mutechat_${user.email}`, muteChat);
+            
+            toast.success('Profile and preferences updated!');
         } catch (error) {
             console.error('Update failed:', error);
             toast.error('Failed to update profile');
@@ -230,6 +243,41 @@ export default function Profile() {
                                         className="w-full px-4 py-3 bg-[#0f1419] border border-[#2d3748] rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 text-white transition-all resize-none placeholder-gray-500"
                                         placeholder="Briefly describe your role and expertise..."
                                     />
+                                </div>
+
+                                {/* Notification Settings */}
+                                <div className="mt-8 pt-8 border-t border-[#2d3748]">
+                                    <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-white">
+                                        <BellRing className="w-5 h-5 text-blue-400" />
+                                        Granular Notifications
+                                    </h3>
+                                    
+                                    <div className="space-y-4">
+                                        <div className="flex items-center justify-between p-4 bg-[#0f1419] border border-[#2d3748] rounded-xl">
+                                            <div>
+                                                <h4 className="text-sm font-bold text-white">Daily Email Digest</h4>
+                                                <p className="text-xs text-gray-400 mt-1">Receive one summary email daily instead of instant notifications.</p>
+                                            </div>
+                                            <label className="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" className="sr-only peer" checked={emailDigest} onChange={() => setEmailDigest(!emailDigest)} />
+                                                <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                            </label>
+                                        </div>
+
+                                        <div className="flex items-center justify-between p-4 bg-[#0f1419] border border-[#2d3748] rounded-xl">
+                                            <div>
+                                                <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                                                    Mute Team Chat
+                                                    {muteChat && <BellOff className="w-3 h-3 text-red-400" />}
+                                                </h4>
+                                                <p className="text-xs text-gray-400 mt-1">Disable browser push notifications for chat messages.</p>
+                                            </div>
+                                            <label className="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" className="sr-only peer" checked={muteChat} onChange={() => setMuteChat(!muteChat)} />
+                                                <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-500"></div>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div className="pt-6">

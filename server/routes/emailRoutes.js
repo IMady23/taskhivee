@@ -8,7 +8,8 @@ import {
     sendTaskAssignment,
     sendTeamInvitation,
     sendDeadlineReminder,
-    sendLeadershipTransition
+    sendLeadershipTransition,
+    sendBugAssignment
 } from '../controllers/emailController.js';
 
 const router = express.Router();
@@ -24,5 +25,8 @@ router.post('/deadline-reminder', sendDeadlineReminder);
 
 // Send leadership transition email
 router.post('/leadership-transition', sendLeadershipTransition);
+
+// Send bug assignment email
+router.post('/bug-assignment', sendBugAssignment);
 
 export default router;

@@ -1,9 +1,11 @@
 import React, { useState, useContext } from 'react';
 import BugsContext from '../../context/BugsContext';
+import TeamContext from '../../context/TeamContext';
 
-export default function BugForm({ onClose, onSuccess, reporter = 'Manaswini' }) {
+export default function BugForm({ onClose, onSuccess, reporter = 'Member' }) {
   const { addBug } = useContext(BugsContext);
-  const [form, setForm] = useState({ title: '', description: '', severity: 'Medium' });
+  const { members } = useContext(TeamContext);
+  const [form, setForm] = useState({ title: '', description: '', severity: 'Medium', assignedTo: '' });
   const [success, setSuccess] = useState('');
 
   const handleChange = (e) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
@@ -18,6 +20,7 @@ export default function BugForm({ onClose, onSuccess, reporter = 'Manaswini' }) 
       description: form.description.trim(),
       reportedBy: reporter,
       severity: form.severity,
+      assignedTo: form.assignedTo || null,
       filePath: form.filePath?.trim() || null,
       status: 'Open',
       reportedDate: new Date().toISOString().split('T')[0],
@@ -85,6 +88,24 @@ export default function BugForm({ onClose, onSuccess, reporter = 'Manaswini' }) 
               <option>High</option>
               <option>Critical</option>
             </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-300">Assign To (Optional)</label>
+            <select 
+              name="assignedTo" 
+              value={form.assignedTo} 
+              onChange={handleChange} 
+              className="mt-1 w-full px-3 py-2 bg-[#0f1419] border border-[#2d3748] rounded text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            >
+              <option value="">Unassigned</option>
+              {members?.map(m => (
+                <option key={m.id || m.uid} value={JSON.stringify({ id: m.id || m.uid, name: m.name, email: m.email })}>
+                  {m.name}
+                </option>
+              ))}
+            </select>
+            <p className="text-xs text-gray-400 mt-1">Tag a team member to resolve this bug.</p>
           </div>
 
           <div className="flex items-center justify-end gap-3 mt-4">

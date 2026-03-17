@@ -7,7 +7,8 @@ import {
   sendTaskAssignmentEmail,
   sendTeamInvitationEmail,
   sendDeadlineReminderEmail,
-  sendLeadershipTransitionEmail
+  sendLeadershipTransitionEmail,
+  sendBugAssignmentEmail
 } from "../utils/emailService.js";
 
 /**
@@ -174,9 +175,46 @@ export const sendLeadershipTransition = async (req, res) => {
   }
 };
 
+/**
+ * Send bug assignment notification email
+ */
+export const sendBugAssignment = async (req, res) => {
+  try {
+    const { email, name, bugData, reporterName, teamName } = req.body;
+
+    if (!email || !name || !bugData || !reporterName) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required fields"
+      });
+    }
+
+    await sendBugAssignmentEmail(
+      email,
+      name,
+      bugData,
+      reporterName,
+      teamName
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Bug assignment email sent"
+    });
+  } catch (error) {
+    console.error("❌ Error sending bug assignment email:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message
+    });
+  }
+};
+
 export default {
   sendTaskAssignment,
   sendTeamInvitation,
   sendDeadlineReminder,
-  sendLeadershipTransition
+  sendLeadershipTransition,
+  sendBugAssignment
 };

@@ -23,6 +23,7 @@ import About from "./pages/About";
 // Notifications
 import NotificationBanner from './components/NotificationBanner';
 import ThemeToggle from "./components/ThemeToggle";
+import GlobalGlow from "./components/ui/GlobalGlow";
 
 // Leader layout and modules
 import LeaderLayout from "./layout/LeaderLayout";
@@ -64,6 +65,7 @@ import Tasks from "./pages/Tasks";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import DevTools from "./pages/DevTools";
+import Whiteboard from "./pages/Whiteboard";
 
 // ✅ Enhanced role-based route guard with better loading states
 function RoleRoute({ children, allowedRoles }) {
@@ -274,6 +276,7 @@ function AppRoutes() {
           <Route path="bugs" element={<LeaderBugs />} />
           <Route path="ai-assistant" element={<AiAssistant />} />
           <Route path="dev-tools" element={<DevTools />} />
+          <Route path="whiteboard" element={<Whiteboard />} />
           <Route path="activity" element={<ActivityTimelinePage />} />
         </Route>
 
@@ -327,6 +330,7 @@ function AppRoutes() {
           <Route path="transition" element={<MemberTransition />} />
           <Route path="ai-assistant" element={<AiAssistant />} />
           <Route path="dev-tools" element={<DevTools />} />
+          <Route path="whiteboard" element={<Whiteboard />} />
         </Route>
         {/* Member Dashboard Route */}
         <Route
@@ -443,6 +447,7 @@ export default function App() {
                   </footer>
                 </div>
                 <ThemeToggle />
+                <GlobalGlow />
                 <NotificationBanner />
               </PageLoaderWithCube>
             </BugsProvider>

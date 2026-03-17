@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState, useContext } from 'react';
 import { AuthContext } from './AuthContext';
 import * as fs from '../services/firestoreService';
+import { getTeamById } from '../services/teamService';
 
 export const TasksContext = createContext();
 
@@ -74,9 +75,48 @@ export function TasksProvider({ children }) {
     try {
       const teamId = user?.teamId || user?.uid || 'demo_team';
       const t = { ...task, teamId };
-      const created = await fs.createTask(t);
+      
+      // Get assignee info for email notification
+      let assigneeInfo = null;
+      if (t.assignedTo && t.assignedTo !== 'Unassigned') {
+        try {
+          const members = await fs.getUsersByTeam(teamId);
+          const assignee = members.find(m => (m.id || m.uid) === t.assignedTo);
+          if (assignee) {
+            assigneeInfo = {
+              id: assignee.id || assignee.uid,
+              name: assignee.name,
+              email: assignee.email
+            };
+          }
+        } catch (err) {
+          console.warn('Could not fetch assignee info:', err);
+        }
+      }
 
-      // Notify Assignee
+      // Get team info for email
+      let teamName = 'Your Team';
+      try {
+        const teamDoc = await getTeamById(teamId);
+        if (teamDoc?.name) {
+          teamName = teamDoc.name;
+        }
+      } catch (err) {
+        console.warn('Could not fetch team name:', err);
+      }
+
+      // Create task with email notification support
+      const created = await fs.createTask(
+        t,
+        teamId,
+        user.uid,
+        assigneeInfo,
+        user.name || 'Leader',
+        teamName,
+        user.photoURL
+      );
+
+      // Notify Assignee (in-app notification)
       if (t.assignedTo && t.assignedTo !== 'Unassigned') {
         const { sendNotification } = await import('../services/notificationService');
         await sendNotification(

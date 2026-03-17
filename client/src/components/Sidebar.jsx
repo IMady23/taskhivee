@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, Users, BarChart2, List, Settings, Box, User, Coffee, FileText, UserPlus } from "lucide-react";
+import { Home, Users, BarChart2, List, Settings, Box, User, Coffee, FileText, UserPlus, MessageCircle, Bug, Calendar } from "lucide-react";
 import { AuthContext } from '../context/AuthContext';
 
 /**
@@ -18,6 +18,10 @@ export default function Sidebar({ role = 'member' }) {
     { label: 'Team', path: '/leader/team', icon: <Users size={18} /> },
     { label: 'Tasks', path: '/leader/tasks', icon: <List size={18} /> },
     { label: 'Documents', path: '/leader/documents', icon: <FileText size={18} /> },
+    { label: 'Whiteboard', path: '/leader/whiteboard', icon: <Box size={18} /> },
+    { label: 'Bug Tracker', path: '/leader/bugs', icon: <Bug size={18} /> },
+    { label: 'Deadlines', path: '/leader/deadlines', icon: <Calendar size={18} /> },
+    { label: 'Team Chat', path: '/leader/chat', icon: <MessageCircle size={18} /> },
     { label: 'Performance', path: '/leader/performance', icon: <BarChart2 size={18} /> },
     { label: 'AI Assistant', path: '/leader/ai-assistant', icon: <Box size={18} /> },
     { label: 'Dev Tools', path: '/leader/dev-tools', icon: <Settings size={18} /> },
@@ -28,7 +32,10 @@ export default function Sidebar({ role = 'member' }) {
     { label: 'Dashboard', path: '/member/dashboard', icon: <Home size={18} /> },
     { label: 'My Tasks', path: '/member/tasks', icon: <List size={18} /> },
     { label: 'Documents', path: '/member/documents', icon: <FileText size={18} /> },
+    { label: 'Whiteboard', path: '/member/whiteboard', icon: <Box size={18} /> },
     { label: 'Bug Reports', path: '/member/bugs', icon: <Box size={18} /> },
+    { label: 'Deadlines', path: '/member/deadlines', icon: <Calendar size={18} /> },
+    { label: 'Team Chat', path: '/member/chat', icon: <MessageCircle size={18} /> },
     { label: 'AI Assistant', path: '/member/ai-assistant', icon: <Box size={18} /> },
     { label: 'Transition', path: '/member/transition', icon: <UserPlus size={18} /> },
     { label: 'Dev Tools', path: '/member/dev-tools', icon: <Settings size={18} /> },
@@ -38,11 +45,11 @@ export default function Sidebar({ role = 'member' }) {
   const menuItems = role === 'leader' ? leaderMenuItems : memberMenuItems;
 
   return (
-    <motion.aside
+    <motion.div
       initial={{ x: -280 }}
       animate={{ x: 0 }}
       transition={{ duration: 0.5, ease: "circOut" }}
-      className="w-64 bg-[var(--bg-secondary)]/80 backdrop-blur-xl text-[var(--text-primary)] h-screen border-r border-white/5 fixed left-0 top-0 z-50 transition-all duration-300 shadow-2xl shadow-black/40 flex flex-col"
+      className="w-64 bg-black/40 backdrop-blur-2xl text-[var(--text-primary)] h-screen border-r border-white/10 fixed left-0 top-0 z-50 shadow-[4px_0_24px_rgba(0,0,0,0.5)] flex flex-col"
     >
       <Link
         to="/profile"
@@ -51,7 +58,7 @@ export default function Sidebar({ role = 'member' }) {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
         <div className="flex items-center gap-4 relative z-10">
-          <div className="w-12 h-12 rounded-2xl overflow-hidden border border-white/10 flex items-center justify-center shadow-2xl group-hover:scale-105 group-hover:rotate-3 transition-all duration-300 bg-[var(--bg-primary)]">
+          <div className="w-12 h-12 rounded-2xl overflow-hidden border border-white/20 flex items-center justify-center shadow-lg group-hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] group-hover:scale-105 group-hover:rotate-3 transition-all duration-300 bg-gradient-to-br from-blue-900/40 to-black/40">
             {user?.photoURL ? (
               <img src={user.photoURL} alt="Profile" className="w-full h-full object-cover" />
             ) : (
@@ -89,7 +96,7 @@ export default function Sidebar({ role = 'member' }) {
             >
               <div className={`
                 transition-transform duration-300 group-hover:scale-110 
-                ${isActive ? 'text-blue-400' : 'text-[var(--text-secondary)]/70 group-hover:text-blue-400'}
+                ${isActive ? 'text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]' : 'text-white/50 group-hover:text-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]'}
               `}>
                 {item.icon}
               </div>
@@ -106,12 +113,12 @@ export default function Sidebar({ role = 'member' }) {
         })}
       </nav>
 
-      <div className="p-6 mt-auto border-t border-white/5 bg-white/[0.01]">
-        <div className="flex items-center gap-3 text-[10px] text-[var(--text-secondary)] font-bold tracking-widest uppercase">
-          <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
-          Stability: 100%
+      <div className="p-6 mt-auto border-t border-white/10 bg-black/20">
+        <div className="flex items-center gap-3 text-[10px] text-white/50 font-bold tracking-widest uppercase">
+          <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.8)] animate-pulse" />
+          System Online
         </div>
       </div>
-    </motion.aside>
+    </motion.div>
   );
 }

@@ -25,18 +25,36 @@ import {
 /**
  * Create a task document in the `tasks` collection.
  * @param {Object} task - Task payload (e.g., title, description, teamId, assignedTo)
+ * @param {string} teamId - Team ID
+ * @param {string} createdBy - User ID of creator
+ * @param {Object} assigneeInfo - Assignee information (id, name, email)
+ * @param {string} leaderName - Name of the leader creating the task
+ * @param {string} teamName - Name of the team
+ * @param {string} leaderPhotoURL - Photo URL of the leader
  * @returns {Promise<Object>} Created task object including `id` and timestamps
  */
-export const createTask = async (task) => {
-  const { id, ...taskData } = task; // Remove temp ID
-  const payload = {
-    ...taskData,
-    createdAt: serverTimestamp(),
-  };
-  const ref = await addDoc(collection(db, 'tasks'), payload);
-  // Return a canonical object resembling existing local model
-  const snap = await getDoc(ref);
-  return { id: ref.id, ...snap.data() };
+export const createTask = async (
+  task,
+  teamId = null,
+  createdBy = null,
+  assigneeInfo = null,
+  leaderName = '',
+  teamName = '',
+  leaderPhotoURL = null
+) => {
+  // Import taskService to use its createTask function which handles emails
+  const { createTask: createTaskWithEmail } = await import('./taskService');
+  
+  // Use the taskService createTask which includes email functionality
+  return await createTaskWithEmail(
+    task,
+    teamId || task.teamId,
+    createdBy,
+    assigneeInfo,
+    leaderName,
+    teamName,
+    leaderPhotoURL
+  );
 };
 
 /**

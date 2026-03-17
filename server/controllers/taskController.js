@@ -7,6 +7,7 @@
 import { db, admin } from "../config/firebase.js";
 import { createNotification } from "./notificationController.js";
 import DependencyResolver from "../services/DependencyResolver.js";
+import { sendTaskAssignmentEmail } from "../utils/emailService.js";
 
 // TODO: createTask - Create a new task
 // Create a new task
@@ -39,12 +40,40 @@ export const createTask = async (req, res) => {
 
     // Notify Assigned Member
     if (assignedTo) {
+      // In-app notification
       await createNotification(
         assignedTo,
         teamId,
         'TASK_ASSIGNED',
         `You have been assigned a new task: ${title}`
       );
+
+      // Email notification
+      try {
+        // Fetch assignee email and team name
+        const [userDoc, teamDoc] = await Promise.all([
+          db.collection('users').doc(assignedTo).get(),
+          db.collection('teams').doc(teamId).get()
+        ]);
+
+        if (userDoc.exists && teamDoc.exists) {
+          const userData = userDoc.data();
+          const teamData = teamDoc.data();
+          
+          if (userData.email) {
+            await sendTaskAssignmentEmail(
+              userData.email,
+              userData.name || 'Team Member',
+              { title, priority: priority || 'Medium', dueDate: dueDate || null },
+              name || 'Team Leader',
+              teamData.name || 'Your Team'
+            );
+          }
+        }
+      } catch (emailError) {
+        console.warn('⚠️ Failed to send assignment email:', emailError.message);
+        // Don't fail the whole request if email fails
+      }
     }
 
     res.status(201).json({ id: docRef.id, ...savedTask.data() });
@@ -224,6 +253,43 @@ export const updateTask = async (req, res) => {
           'TASK_REASSIGNED',
           `Task "${taskData.title}" has been reassigned`
         );
+      }
+
+      // Email notification for new assignee
+      if (assignedTo) {
+        try {
+          // Fetch assignee email and team name
+          const [userDoc, teamDoc] = await Promise.all([
+            db.collection('users').doc(assignedTo).get(),
+            db.collection('teams').doc(teamId).get()
+          ]);
+
+          if (userDoc.exists && teamDoc.exists) {
+            const userData = userDoc.data();
+            const teamData = teamDoc.data();
+            
+            if (userData.email) {
+              // Determine if this is a new assignment or a reassignment from someone else
+              const isReassignment = taskData.assignedTo && taskData.assignedTo !== assignedTo;
+              
+              await sendTaskAssignmentEmail(
+                userData.email,
+                userData.name || 'Team Member',
+                { 
+                  title: title || taskData.title, 
+                  priority: priority || taskData.priority, 
+                  dueDate: dueDate || taskData.dueDate,
+                  isReassignment,
+                  previousAssigneeName: isReassignment ? (taskData.assignedToName || 'someone else') : null
+                },
+                name || 'Team Leader',
+                teamData.name || 'Your Team'
+              );
+            }
+          }
+        } catch (emailError) {
+          console.warn('⚠️ Failed to send reassignment email:', emailError.message);
+        }
       }
     }
 

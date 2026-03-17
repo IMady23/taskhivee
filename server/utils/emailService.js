@@ -220,15 +220,19 @@ export const sendTaskAssignmentEmail = async (email, name, taskData, leaderName,
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: `New Task Assigned: ${taskData.title}`,
+      subject: taskData.isReassignment 
+        ? `Task Reassigned to You: ${taskData.title}`
+        : `New Task Assigned: ${taskData.title}`,
       html: `
         <div style="font-family: Arial, sans-serif; padding: 20px;">
           <div style="max-width: 600px; margin: 0 auto; background-color: #f9fafb; border-radius: 8px; padding: 30px;">
-            <h2 style="color: #1e40af; margin-bottom: 10px;">New Task Assigned</h2>
+            <h2 style="color: #1e40af; margin-bottom: 10px;">${taskData.isReassignment ? 'Task Reassigned' : 'New Task Assigned'}</h2>
             <p style="color: #666; margin-bottom: 20px;">Hi <strong>${name}</strong>,</p>
             
             <p style="color: #333; margin-bottom: 20px;">
-              <strong>${leaderName}</strong> has assigned you a new task in the team <strong>${teamName}</strong>.
+              ${taskData.isReassignment 
+                ? `<strong>${leaderName}</strong> has reassigned a task to you in the team <strong>${teamName}</strong>. This task was previously assigned to ${taskData.previousAssigneeName || 'someone else'} but was not completed on time/needed reassignment.`
+                : `<strong>${leaderName}</strong> has assigned you a new task in the team <strong>${teamName}</strong>.`}
             </p>
             
             <div style="background-color: white; border-left: 4px solid #1e40af; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
@@ -482,6 +486,62 @@ export const sendLeadershipTransitionEmail = async (email, name, proposedBy, rea
   }
 };
 
+/**
+ * Send bug assignment notification email
+ * @param {string} email - Assignee's email address
+ * @param {string} name - Assignee's name
+ * @param {Object} bugData - Bug information
+ * @param {string} reporterName - Person who reported the bug
+ */
+export const sendBugAssignmentEmail = async (email, name, bugData, reporterName, teamName = 'Your Team') => {
+  try {
+    const priorityColor = {
+      'Critical': '#7f1d1d',
+      'High': '#dc2626',
+      'Medium': '#d97706',
+      'Low': '#16a34a'
+    }[bugData.severity] || '#6b7280';
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: `Bug Assigned to You: ${bugData.title}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <div style="max-width: 600px; margin: 0 auto; background-color: #f9fafb; border-radius: 8px; padding: 30px;">
+            <h2 style="color: #dc2626; margin-bottom: 10px;">Bug Assigned to You</h2>
+            <p style="color: #666; margin-bottom: 20px;">Hi <strong>${name}</strong>,</p>
+            
+            <p style="color: #333; margin-bottom: 20px;">
+              <strong>${reporterName}</strong> has assigned a bug for you to resolve in the team <strong>${teamName}</strong>.
+            </p>
+            
+            <div style="background-color: white; border-left: 4px solid ${priorityColor}; padding: 20px; border-radius: 6px; margin-bottom: 20px;">
+              <h3 style="color: #1e40af; margin: 0 0 10px 0;">${bugData.title}</h3>
+              <p style="color: #666; margin-bottom: 10px;"><strong>Severity:</strong> <span style="color: ${priorityColor}; font-weight: bold;">${bugData.severity}</span></p>
+            </div>
+            
+            <p style="color: #333; margin-bottom: 20px;">
+              Please log in to TaskHive to view the details and resolve this bug.
+            </p>
+            
+            <a href="http://localhost:5173/login" style="display: inline-block; background-color: #dc2626; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; margin-bottom: 20px;">
+              View Bug
+            </a>
+          </div>
+        </div>
+      `,
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log(`✅ Bug assignment email sent to ${email}`);
+    return true;
+  } catch (error) {
+    console.warn("⚠️ Email service not configured or failed:", error.message);
+    return true;
+  }
+};
+
 export default {
   generateOTP,
   sendOTP,
@@ -490,5 +550,6 @@ export default {
   sendTaskAssignmentEmail,
   sendTeamInvitationEmail,
   sendDeadlineReminderEmail,
-  sendLeadershipTransitionEmail
+  sendLeadershipTransitionEmail,
+  sendBugAssignmentEmail
 };

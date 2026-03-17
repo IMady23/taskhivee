@@ -57,7 +57,7 @@ const CommandPalette = ({ isOpen, onClose }) => {
                     initial={{ scale: 0.95, y: -20 }}
                     animate={{ scale: 1, y: 0 }}
                     exit={{ scale: 0.95, y: -20 }}
-                    className="bg-[var(--bg-secondary)] w-full max-w-2xl rounded-2xl border border-white/5 shadow-2xl overflow-hidden shadow-blue-500/10"
+                    className="bg-black/60 backdrop-blur-2xl w-full max-w-2xl rounded-2xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.8)] overflow-hidden ring-1 ring-white/5"
                     onClick={e => e.stopPropagation()}
                 >
                     {/* Search Header */}

@@ -8,7 +8,7 @@ import React from 'react';
  * @param {string} variant - 'text', 'circular', 'rectangular'
  */
 const Skeleton = ({ className = '', variant = 'rectangular' }) => {
-    const baseClasses = "relative overflow-hidden bg-[var(--bg-secondary)]/80 backdrop-blur-sm before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/5 before:to-transparent";
+    const baseClasses = "relative overflow-hidden bg-black/20 backdrop-blur-xl ring-1 ring-white/5 shadow-[inset_0_0_15px_rgba(255,255,255,0.02)] before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent";
 
     const variants = {
         text: "h-3 w-full rounded-md mb-2",

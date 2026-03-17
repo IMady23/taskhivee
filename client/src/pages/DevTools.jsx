@@ -1,7 +1,6 @@
 import React from 'react';
 import { Github, Code2, Monitor, ExternalLink, Terminal, Cpu } from 'lucide-react';
 import { motion } from 'framer-motion';
-import ParticleBackground from '../components/ParticleBackground';
 
 const DevTools = () => {
     const tools = [
@@ -53,7 +52,6 @@ const DevTools = () => {
 
     return (
         <div className="p-8 max-w-6xl mx-auto relative">
-            <ParticleBackground />
             <header className="mb-10 relative z-10">
                 <h1 className="text-3xl font-extrabold text-white flex items-center gap-3">
                     <Monitor className="text-blue-500" />
