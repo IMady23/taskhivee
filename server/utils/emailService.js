@@ -9,16 +9,13 @@ dotenv.config();
 const frontendUrlShared = process.env.FRONTEND_URL || "http://localhost:5173";
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false, // Use STARTTLS
-  requireTLS: true,
+  service: "gmail",
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD,
   },
-  connectionTimeout: 10000, // 10 seconds
-  greetingTimeout: 10000,
+  logger: true, // Enable internal logging
+  debug: true,  // Show SMTP traffic
 });
 
 // Verify connection configuration
